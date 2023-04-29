@@ -1,0 +1,25 @@
+version: "3.9"
+
+services: 
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
+    environment:
+      POSTGRES_USER: diary_user
+      POSTGRES_PASSWORD: diary_pass
+      POSTGRES_DB: diary_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

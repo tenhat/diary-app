@@ -1,0 +1,6 @@
+from postgres:13
+
+copy init.sql /docker-entrypoint-initdb.d/
+
+expose 5432
+
